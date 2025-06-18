@@ -112,13 +112,14 @@
     });
 
     // Quando o usuário escolhe uma opção
-    function playOption(videoFile) {
-      modalOverlay.style.display = "none";
-      video.src = videoFile;
-      video.play();
-      video.onended = () => {
-        alert("Um beijo da TIPILICA 🩷!");
-      };
+function playOption(videoFile) {
+  modalOverlay.style.display = "none";
+  video.src = videoFile;
+  video.play();
+  video.onended = () => {
+    alert("Um beijo da TIPILICA 🩷!");
+    window.location.href = "index.html";
+  };
     }
   </script>
 
