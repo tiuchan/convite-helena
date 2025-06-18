@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escolha Seu Presente</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    #startButton {
+      background-color: #ff69b4;
+      border: none;
+      padding: 16px 30px;
+      border-radius: 10px;
+      font-size: 1.3rem;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #startButton:hover {
+      background-color: #e055a3;
+    }
+    video {
+      display: none;
+      width: 100%;
+      height: auto;
+      max-height: 100vh;
+      object-fit: cover;
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .modal {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 90%;
+      width: 350px;
+    }
+    .modal h2 {
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+    .modal button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #ff69b4;
+      color: white;
+      transition: background 0.3s ease;
+    }
+    .modal button:hover {
+      background-color: #e055a3;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="startButton">Clique para começar</button>
+
+  <video id="mainVideo" playsinline>
+    <source src="video1.mp4" type="video/mp4">
+    Seu navegador não suporta vídeos HTML5.
+  </video>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h2>Escolha seu presente:</h2>
+      <button onclick="playOption('video2.mp4')">Um bijo da Tipilica</button>
+      <button onclick="playOption('video3.mp4')">Presente Misterioso</button>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById("mainVideo");
+    const modalOverlay = document.getElementById("modalOverlay");
+    const startButton = document.getElementById("startButton");
+
+    // Ao clicar no botão de iniciar
+    startButton.addEventListener("click", () => {
+      startButton.style.display = "none";
+      video.style.display = "block";
+      video.play();
+    });
+
+    // Ao terminar o vídeo, mostra o modal
+    video.addEventListener("ended", () => {
+      modalOverlay.style.display = "flex";
+    });
+
+    // Quando o usuário escolhe uma opção
+    function playOption(videoFile) {
+      modalOverlay.style.display = "none";
+      video.src = videoFile;
+      video.play();
+      video.onended = () => {
+        alert("Um beijo da TIPILICA 🩷!");
+      };
+    }
+  </script>
+
+</body>
+</html>
